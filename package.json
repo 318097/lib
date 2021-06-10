@@ -12,5 +12,8 @@
     "env": {},
     "componentsDefaultDirectory": "components/{name}",
     "packageManager": "npm"
+  },
+  "dependencies": {
+    "moment": "^2.29.1"
   }
 }
