@@ -1,9 +1,11 @@
 {
-  "name": "lib",
+  "name": "@codedrops/lib",
   "version": "1.0.0",
-  "description": "",
+  "private": false,
+  "description": "Common library utils",
+  "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +17,10 @@
   },
   "dependencies": {
     "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "webpack": "^5.38.1",
+    "webpack-cli": "^4.7.2",
+    "webpack-dev-server": "^3.11.2"
   }
 }
