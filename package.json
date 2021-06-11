@@ -1,6 +1,6 @@
 {
   "name": "@codedrops/lib",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "private": false,
   "description": "Common library utils",
   "main": "dist/index.js",
@@ -8,8 +8,6 @@
     "build": "webpack"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bit": {
     "env": {},
     "componentsDefaultDirectory": "components/{name}",
@@ -22,5 +20,15 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/318097/lib.git"
+  },
+  "author": "Mehul Lakhanpal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/318097/lib/issues"
+  },
+  "homepage": "https://github.com/318097/lib#readme"
 }
