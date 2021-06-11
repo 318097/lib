@@ -6,7 +6,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "webpack",
-    "deploy": "npm run build && npm publish --access=public"
+    "predeploy": "npm version patch",
+    "deploy": "npm publish --access=public"
   },
   "keywords": [],
   "bit": {
