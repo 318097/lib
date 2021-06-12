@@ -1,3 +1,4 @@
-import { generateSlug, copyToClipboard } from "./utils";
+const { generateSlug, copyToClipboard } = require("./utils");
+// import { formatDate } from "./date";
 
-export { generateSlug, copyToClipboard };
+module.exports = { generateSlug, copyToClipboard };

@@ -1,8 +1,10 @@
 module.exports = () => {
   return {
-    mode: "none",
+    mode: "production",
     entry: "./src/index.js",
     output: {
+      library: "cd",
+      libraryTarget: "umd",
       filename: "index.js",
     },
   };
