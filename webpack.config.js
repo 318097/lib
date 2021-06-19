@@ -3,7 +3,7 @@ module.exports = () => {
     mode: "production",
     entry: "./src/index.js",
     output: {
-      library: "cd",
+      library: "lib",
       libraryTarget: "umd",
       filename: "index.js",
     },
