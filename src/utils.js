@@ -23,4 +23,9 @@ const copyToClipboard = (text) => {
   textField.remove();
 };
 
-export { generateSlug, copyToClipboard };
+const checkScrollAtBottom = (node) => {
+  const { scrollHeight, clientHeight, scrollTop } = node;
+  return scrollHeight - clientHeight - scrollTop <= 1 && scrollTop > 0;
+};
+
+export { generateSlug, copyToClipboard, checkScrollAtBottom };
