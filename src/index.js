@@ -5,4 +5,6 @@ const {
 } = require("./utils");
 // import { formatDate } from "./date";
 
-module.exports = { generateSlug, copyToClipboard, checkScrollAtBottom };
+const test = () => {};
+
+module.exports = { generateSlug, copyToClipboard, checkScrollAtBottom, test };
