@@ -28,4 +28,16 @@ const checkScrollAtBottom = (node) => {
   return scrollHeight - clientHeight - scrollTop <= 1 && scrollTop > 0;
 };
 
-export { generateSlug, copyToClipboard, checkScrollAtBottom };
+const getServerURL = ({ isProd = false, serverType = "lambda" } = {}) => {
+  const connectToLambda = serverType === "lambda";
+  const LAMBDA_PROD =
+    "https://bubblegum-lambda.netlify.app/.netlify/functions/api";
+  const HEROKU_PROD = "https://bubblegum-server.herokuapp.com/api";
+  const LOCAL_SERVER = "http://localhost:7000/api";
+
+  if (isProd) return connectToLambda ? LAMBDA_PROD : HEROKU_PROD;
+
+  return LOCAL_SERVER;
+};
+
+export { generateSlug, copyToClipboard, checkScrollAtBottom, getServerURL };
