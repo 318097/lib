@@ -1,6 +1,6 @@
 {
   "name": "@codedrops/lib",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "private": false,
   "description": "Common library utils",
   "main": "dist/index.js",
