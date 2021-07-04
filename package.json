@@ -7,9 +7,9 @@
   "scripts": {
     "prebuild": "rm -rf dist",
     "build": "webpack",
-    "preddeploy": "npm version patch",
-    "publish": "npm publish --access=public",
-    "deploy": "npm run build && npm run publish"
+    "predeploy": "npm version patch",
+    "publish:npm": "npm publish --access=public",
+    "deploy": "npm run build && npm run publish:npm"
   },
   "keywords": [],
   "bit": {
@@ -18,8 +18,7 @@
     "packageManager": "npm"
   },
   "dependencies": {
-    "moment": "^2.29.1",
-    "react": "^17.0.2"
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -28,6 +27,9 @@
     "webpack": "^5.42.0",
     "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
   },
   "repository": {
     "type": "git",
