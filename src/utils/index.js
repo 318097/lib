@@ -1,9 +1,2 @@
-import { generateSlug, copyToClipboard, checkScrollAtBottom } from "./common";
-import { formatDate } from "./date";
-
-module.exports = {
-  generateSlug,
-  copyToClipboard,
-  checkScrollAtBottom,
-  formatDate,
-};
+export { generateSlug, copyToClipboard, checkScrollAtBottom } from "./common";
+export { formatDate } from "./date";

@@ -1,11 +1,16 @@
 module.exports = () => {
   return {
     mode: "production",
-    entry: "./src/index.js",
+    entry: {
+      utils: "./src/utils/index.js",
+      helpers: "./src/helpers/index.js",
+      hooks: "./src/hooks/index.js",
+      index: "./src/index.js",
+    },
     output: {
       library: "lib",
       libraryTarget: "umd",
-      filename: "index.js",
+      filename: "[name].js",
     },
     module: {
       rules: [

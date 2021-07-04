@@ -1,15 +1,7 @@
-import { handleError } from "./errorHandling";
-import {
+export { handleError } from "./errorHandling";
+export {
   getDataFromStorage,
   setDataInStorage,
   getToken,
   hasToken,
 } from "./localStorage";
-
-export {
-  handleError,
-  getDataFromStorage,
-  setDataInStorage,
-  getToken,
-  hasToken,
-};
