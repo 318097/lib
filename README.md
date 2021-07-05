@@ -1,11 +1,11 @@
 ## Lib
 
-###### hooks
+#### hooks
 
 - useObject
 - useToggle
 
-###### utils
+#### utils
 
 **Common**
 
@@ -18,12 +18,14 @@
 
 - formatDate
 
-###### helpers
+#### helpers
 
 - Error Handling
 - Local Storage
 
-#### Todos
+---
+
+##### Todos
 
 - [ ] Deploy to github to use as CDN
 - [ ] Notes App
