@@ -4,6 +4,7 @@ export {
   copyToClipboard,
   checkScrollAtBottom,
   formatDate,
+  getServerURL,
 } from "./utils";
 export {
   handleError,
