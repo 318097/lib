@@ -5,6 +5,9 @@ export {
   checkScrollAtBottom,
   formatDate,
   getServerURL,
+  getNextElementInArray,
+  generateRandomNumberInRange,
+  calculateTotal,
 } from "./utils";
 export {
   handleError,
