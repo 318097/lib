@@ -1,5 +1,5 @@
 import mixpanel from "mixpanel-browser";
-
+import { handleError } from "../helpers/errorHandling";
 class Tracker {
   events = null;
 
@@ -20,7 +20,7 @@ class Tracker {
       console.table({ eventName: name, ...params });
       mixpanel.track(name, params);
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -30,7 +30,7 @@ class Tracker {
       this.setUser(user);
       this.track("INIT", params);
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -41,7 +41,7 @@ class Tracker {
       console.log(data);
       mixpanel.people.set(data);
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
@@ -49,7 +49,7 @@ class Tracker {
     try {
       mixpanel.identify(user.id);
     } catch (error) {
-      console.error(error);
+      handleError(error);
     }
   };
 
