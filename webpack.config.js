@@ -5,6 +5,7 @@ module.exports = () => {
       utils: "./src/utils/index.js",
       helpers: "./src/helpers/index.js",
       hooks: "./src/hooks/index.js",
+      services: "./src/services/index.js",
       index: "./src/index.js",
     },
     output: {

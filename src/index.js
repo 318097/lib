@@ -13,3 +13,4 @@ export {
   getToken,
   hasToken,
 } from "./helpers";
+export { TrackingService } from "./services";

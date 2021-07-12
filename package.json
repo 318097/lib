@@ -18,6 +18,7 @@
     "packageManager": "npm"
   },
   "dependencies": {
+    "mixpanel-browser": "^2.41.0",
     "moment": "^2.29.1"
   },
   "devDependencies": {
