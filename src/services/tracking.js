@@ -1,34 +1,36 @@
 import mixpanel from "mixpanel-browser";
 import { handleError } from "../helpers/errorHandling";
 class Tracker {
-  events = null;
+  constructor(options = {}) {
+    const { events, trackingId, logEvents = true } = options;
 
-  constructor(options) {
-    const { events, trackingId } = options;
-    if (!trackingId) return console.warning("Tracking id is required.");
+    if (!trackingId) return console.warn("Tracking id is required.");
+
     mixpanel.init(trackingId);
 
     this.events = events;
+    this.logEvents = logEvents;
   }
 
   track = (event, params = {}) => {
     try {
       if (this.events && !this.events[event])
-        return console.warning(`Invalid event: ${event}`);
+        return console.warn(`Invalid event: ${event}`);
 
       const { name } = this.events[event];
-      console.table({ eventName: name, ...params });
+
+      if (this.logEvents) console.table({ eventName: name, ...params });
+
       mixpanel.track(name, params);
     } catch (error) {
       handleError(error);
     }
   };
 
-  init = (user, params = {}) => {
+  register = (user) => {
     try {
       this.setIdentity(user);
       this.setUser(user);
-      this.track("INIT", params);
     } catch (error) {
       handleError(error);
     }
@@ -36,9 +38,9 @@ class Tracker {
 
   setUser = (user = {}) => {
     try {
-      const { email, name, profileURL, id: _id } = user;
-      const data = { $email: email, $name: name, profileURL, _id };
-      console.log(data);
+      const { email, name, profileURL, id, _id } = user;
+      const uid = _id || id;
+      const data = { $email: email, $name: name, profileURL, _id: uid };
       mixpanel.people.set(data);
     } catch (error) {
       handleError(error);
@@ -47,13 +49,21 @@ class Tracker {
 
   setIdentity = (user) => {
     try {
-      mixpanel.identify(user.id);
+      const { _id, id } = user;
+      const uid = _id || id;
+      mixpanel.identify(uid);
     } catch (error) {
       handleError(error);
     }
   };
 
-  reset = () => mixpanel.reset();
+  reset = () => {
+    try {
+      mixpanel.reset();
+    } catch (error) {
+      handleError(error);
+    }
+  };
 }
 
 export default Tracker;
