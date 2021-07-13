@@ -1,6 +1,7 @@
 module.exports = () => {
   return {
     mode: "production",
+    devtool: "source-map",
     entry: {
       utils: "./src/utils/index.js",
       helpers: "./src/helpers/index.js",
