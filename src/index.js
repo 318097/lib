@@ -10,4 +10,4 @@ export {
   calculateTotal,
 } from "./utils";
 export { handleError, getDataFromStorage, setDataInStorage } from "./helpers";
-export { TrackingService } from "./services";
+export { EventTracker, SessionManager } from "./services";

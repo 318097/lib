@@ -22,13 +22,9 @@ const setDataInStorage = (key = DEFAULT_KEY_NAME, value) => {
   }
 };
 
-const getToken = (key) => {
+const getProperty = (key = DEFAULT_KEY_NAME, property) => {
   const data = getDataFromStorage(key);
-  return data.token;
+  return data[property];
 };
 
-const hasToken = (key) => {
-  return Boolean(getToken(key));
-};
-
-export { getDataFromStorage, setDataInStorage, getToken, hasToken };
+export { getDataFromStorage, setDataInStorage, getProperty };
