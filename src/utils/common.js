@@ -28,16 +28,29 @@ const checkScrollAtBottom = (node) => {
   return scrollHeight - clientHeight - scrollTop <= 1 && scrollTop > 0;
 };
 
-const getServerURL = ({ isProd = false, serverType = "lambda" } = {}) => {
+const getServerURL = ({
+  isProd = false,
+  serverType = "lambda",
+  returnObject = false,
+  port = 7000,
+} = {}) => {
   const connectToLambda = serverType === "lambda";
-  const LAMBDA_PROD =
-    "https://bubblegum-lambda.netlify.app/.netlify/functions/api";
-  const HEROKU_PROD = "https://bubblegum-server.herokuapp.com/api";
-  const LOCAL_SERVER = "http://localhost:7000/api";
+  const LAMBDA_PROD = "https://bubblegum-lambda.netlify.app/.netlify/functions";
+  const HEROKU_PROD = "https://bubblegum-server.herokuapp.com";
+  const LOCAL_SERVER = `http://localhost:${port}`;
 
-  if (isProd) return connectToLambda ? LAMBDA_PROD : HEROKU_PROD;
+  let baseURL;
 
-  return LOCAL_SERVER;
+  if (isProd) baseURL = connectToLambda ? LAMBDA_PROD : HEROKU_PROD;
+  else baseURL = LOCAL_SERVER;
+
+  const responseObj = {
+    baseURL,
+    serverURL: `${baseURL}/api`,
+    graphqlURL: `${baseURL}/graphql`,
+  };
+
+  return returnObject ? responseObj : `${baseURL}/api`;
 };
 
 export { generateSlug, copyToClipboard, checkScrollAtBottom, getServerURL };
