@@ -1,1 +1,1 @@
-export { default as TrackingService } from "./tracking";
+export { default as TrackingService } from "./EventTracker";

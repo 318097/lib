@@ -1,6 +1,7 @@
 import mixpanel from "mixpanel-browser";
 import { handleError } from "../helpers/errorHandling";
-class Tracker {
+
+class EventTracker {
   constructor(options = {}) {
     const { events, trackingId, logEvents = true } = options;
 
@@ -66,4 +67,4 @@ class Tracker {
   };
 }
 
-export default Tracker;
+export default EventTracker;

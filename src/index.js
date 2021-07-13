@@ -9,11 +9,5 @@ export {
   generateRandomNumberInRange,
   calculateTotal,
 } from "./utils";
-export {
-  handleError,
-  getDataFromStorage,
-  setDataInStorage,
-  getToken,
-  hasToken,
-} from "./helpers";
+export { handleError, getDataFromStorage, setDataInStorage } from "./helpers";
 export { TrackingService } from "./services";
