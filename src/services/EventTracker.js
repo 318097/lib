@@ -28,15 +28,6 @@ class EventTracker {
     }
   };
 
-  register = (user) => {
-    try {
-      this.setIdentity(user);
-      this.setUser(user);
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
   setUser = (user = {}) => {
     try {
       const { email, name, profileURL, id, _id } = user;
@@ -48,11 +39,11 @@ class EventTracker {
     }
   };
 
-  setIdentity = (user) => {
+  setIdentity = (user = {}, key) => {
     try {
       const { _id, id } = user;
       const uid = _id || id;
-      mixpanel.identify(uid);
+      mixpanel.identify(user[key] ? user[key] : uid);
     } catch (error) {
       handleError(error);
     }
