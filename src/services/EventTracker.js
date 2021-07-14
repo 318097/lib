@@ -12,14 +12,14 @@ const getValue = (user, key) => {
 
 class EventTracker {
   constructor(options = {}) {
-    const { events, trackingId, logEvents = true } = options;
+    const { events, trackingId, isDev = true, ...rest } = options;
 
     if (!trackingId) return console.warn("Tracking id is required.");
 
-    mixpanel.init(trackingId);
+    mixpanel.init(trackingId, { debug: isDev, ...rest });
 
     this.events = events;
-    this.logEvents = logEvents;
+    this.isDev = isDev;
   }
 
   track = (event, params = {}) => {
@@ -29,7 +29,7 @@ class EventTracker {
 
       const { name } = this.events[event];
 
-      if (this.logEvents) console.table({ eventName: name, ...params });
+      if (this.isDev) console.table({ eventName: name, ...params });
 
       mixpanel.track(name, params);
     } catch (error) {
