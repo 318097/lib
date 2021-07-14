@@ -1,6 +1,15 @@
 import mixpanel from "mixpanel-browser";
 import { handleError } from "../helpers/errorHandling";
 
+const getValue = (user, key) => {
+  const { _id, id } = user;
+  const uid = _id || id;
+
+  if (key === "id") return uid;
+  else if (user[key]) return user[key];
+  return console.warn("Key not found in `user` obj");
+};
+
 class EventTracker {
   constructor(options = {}) {
     const { events, trackingId, logEvents = true } = options;
@@ -39,11 +48,19 @@ class EventTracker {
     }
   };
 
-  setIdentity = (user = {}, key) => {
+  setIdentity = (user = {}, key = "email") => {
     try {
-      const { _id, id } = user;
-      const uid = _id || id;
-      mixpanel.identify(user[key] ? user[key] : uid);
+      const value = getValue(user, key);
+      mixpanel.identify(value);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
+  alias = (user = {}, key = "email") => {
+    try {
+      const value = getValue(user, key);
+      mixpanel.identify(value);
     } catch (error) {
       handleError(error);
     }
