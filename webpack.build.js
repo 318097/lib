@@ -1,5 +1,8 @@
+const commonConfig = require("./webpack.common");
+
 module.exports = () => {
   return {
+    ...commonConfig,
     mode: "production",
     devtool: "source-map",
     entry: {
@@ -13,20 +16,6 @@ module.exports = () => {
       library: "lib",
       libraryTarget: "umd",
       filename: "[name].js",
-    },
-    module: {
-      rules: [
-        {
-          test: /\.m?js$/,
-          exclude: /node_modules/,
-          use: {
-            loader: "babel-loader",
-            options: {
-              presets: [["@babel/preset-env", { targets: "defaults" }]],
-            },
-          },
-        },
-      ],
     },
     externals: {
       react: "react",

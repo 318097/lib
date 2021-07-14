@@ -39,3 +39,6 @@
   - [ ] Tracking lib
 - [ ] File Ops - util functions
 - [ ] Add JS docs
+- [ ] Generate readme using JS docs
+- [ ] Convert to typescript
+- [ ] Setup dev environment
