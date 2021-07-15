@@ -1,4 +1,6 @@
 const commonConfig = require("./webpack.common");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = () => {
   return {
@@ -20,5 +22,6 @@ module.exports = () => {
     externals: {
       react: "react",
     },
+    plugins: [new BundleAnalyzerPlugin()],
   };
 };
