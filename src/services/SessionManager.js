@@ -33,7 +33,7 @@ class SessionManager {
   };
 
   getToken = () => {
-    this.getProperty(this.key, "token");
+    this.getProperty("token");
   };
 
   hasToken = () => {

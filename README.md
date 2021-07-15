@@ -1,30 +1,5 @@
 ## Lib
 
-#### hooks
-
-- useObject
-- useToggle
-
-#### utils
-
-**Common**
-
-- generateSlug
-- copyToClipboard
-- checkScrollAtBottom
-- getServerURL
-
-**Date**
-
-- formatDate
-
-#### helpers
-
-- Error Handling
-- Local Storage
-
----
-
 ##### Todos
 
 - [ ] Deploy to github to use as CDN
