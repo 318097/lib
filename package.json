@@ -1,6 +1,6 @@
 {
   "name": "@codedrops/lib",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "private": false,
   "description": "Custom utils, helpers, hooks",
   "main": "dist/index.js",
