@@ -6,15 +6,16 @@ import {
 } from "../helpers/localStorage";
 
 class SessionManager {
-  constructor(options = {}) {
+  constructor(options = {}, defaultValue = {}) {
     const { key = "root" } = options;
 
     this.key = key;
+    this.set(defaultValue);
   }
 
   set = (value) => {
     try {
-      setDataInStorage(this.key, value);
+      return setDataInStorage(this.key, value);
     } catch (error) {
       handleError(error);
     }
@@ -22,18 +23,18 @@ class SessionManager {
 
   get = () => {
     try {
-      getDataFromStorage(this.key);
+      return getDataFromStorage(this.key);
     } catch (error) {
       handleError(error);
     }
   };
 
   getProperty = (property) => {
-    getProperty(this.key, property);
+    return getProperty(this.key, property);
   };
 
   getToken = () => {
-    this.getProperty("token");
+    return this.getProperty("token");
   };
 
   hasToken = () => {
