@@ -22,6 +22,6 @@ module.exports = () => {
     externals: {
       react: "react",
     },
-    plugins: [new BundleAnalyzerPlugin()],
+    // plugins: [new BundleAnalyzerPlugin()],
   };
 };
