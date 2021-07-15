@@ -10,7 +10,7 @@ class SessionManager {
     const { key = "root" } = options;
 
     this.key = key;
-    this.set(defaultValue);
+    // this.set(defaultValue);
   }
 
   set = (value) => {
