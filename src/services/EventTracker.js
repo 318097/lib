@@ -14,10 +14,11 @@ class EventTracker {
   constructor(options = {}) {
     const { events, trackingId, isDev = true, ...rest } = options;
 
-    if (!trackingId) return console.warn("Tracking id is required.");
+    if (!trackingId) console.warn("Tracking id is required.");
 
     mixpanel.init(trackingId, { debug: isDev, ...rest });
 
+    this.trackingId = trackingId;
     this.events = events;
     this.isDev = isDev;
   }
@@ -27,13 +28,24 @@ class EventTracker {
       let eventName;
 
       if (this.events) {
-        if (this.events[event]) eventName = this.events[event]["name"];
-        else return console.warn(`Invalid event: ${event}`);
+        if (this.events[event]) {
+          const obj = this.events[event] || {};
+          eventName = obj["name"];
+          if (obj["fields"]) {
+            const isValid = obj["fields"].every((field) =>
+              Boolean(params[field])
+            );
+            if (!isValid)
+              return console.warn(
+                `${obj["fields"].join(", ")} fields are required.`
+              );
+          }
+        } else return console.warn(`Invalid event: '${event}'`);
       } else eventName = event;
 
       if (this.isDev) console.table({ eventName, ...params });
 
-      mixpanel.track(eventName, params);
+      if (this.trackingId) mixpanel.track(eventName, params);
     } catch (error) {
       handleError(error);
     }
@@ -44,7 +56,8 @@ class EventTracker {
       const { email, name, profileURL, id, _id } = user;
       const uid = _id || id;
       const data = { $email: email, $name: name, profileURL, _id: uid };
-      mixpanel.people.set(data);
+
+      if (this.trackingId) mixpanel.people.set(data);
     } catch (error) {
       handleError(error);
     }
@@ -53,7 +66,8 @@ class EventTracker {
   setIdentity = (user = {}, key = "email") => {
     try {
       const value = getValue(user, key);
-      mixpanel.identify(value);
+
+      if (this.trackingId) mixpanel.identify(value);
     } catch (error) {
       handleError(error);
     }
@@ -62,7 +76,8 @@ class EventTracker {
   alias = (user = {}, key = "email") => {
     try {
       const value = getValue(user, key);
-      mixpanel.identify(value);
+
+      if (this.trackingId) mixpanel.identify(value);
     } catch (error) {
       handleError(error);
     }
@@ -70,7 +85,7 @@ class EventTracker {
 
   reset = () => {
     try {
-      mixpanel.reset();
+      if (this.trackingId) mixpanel.reset();
     } catch (error) {
       handleError(error);
     }
