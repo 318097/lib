@@ -24,14 +24,16 @@ class EventTracker {
 
   track = (event, params = {}) => {
     try {
-      if (this.events && !this.events[event])
-        return console.warn(`Invalid event: ${event}`);
+      let eventName;
 
-      const { name } = this.events[event];
+      if (this.events) {
+        if (this.events[event]) eventName = this.events[event]["name"];
+        else return console.warn(`Invalid event: ${event}`);
+      } else eventName = event;
 
-      if (this.isDev) console.table({ eventName: name, ...params });
+      if (this.isDev) console.table({ eventName, ...params });
 
-      mixpanel.track(name, params);
+      mixpanel.track(eventName, params);
     } catch (error) {
       handleError(error);
     }
