@@ -11,7 +11,7 @@ const getValue = (user, key) => {
 };
 
 class EventTracker {
-  constructor(options = {}) {
+  constructor(options = {}, custom = {}) {
     const { events, trackingId, isDev = true, ...rest } = options;
 
     if (!trackingId) console.warn("Tracking id is required.");
@@ -21,6 +21,7 @@ class EventTracker {
     this.trackingId = trackingId;
     this.events = events;
     this.isDev = isDev;
+    this.custom = custom;
   }
 
   track = (event, params = {}) => {
@@ -43,9 +44,12 @@ class EventTracker {
         } else return console.warn(`Invalid event: '${event}'`);
       } else eventName = event;
 
-      if (this.isDev) console.table({ eventName, ...params });
+      const { defaultProperties = {} } = this.custom || {};
+      const properties = { ...params, ...defaultProperties };
 
-      if (this.trackingId) mixpanel.track(eventName, params);
+      if (this.isDev) console.table({ eventName, ...properties });
+
+      if (this.trackingId) mixpanel.track(eventName, properties);
     } catch (error) {
       handleError(error);
     }
