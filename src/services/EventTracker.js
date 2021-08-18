@@ -51,13 +51,16 @@ class EventTracker {
     }
   };
 
-  setUser = (user = {}) => {
+  setUser = (user = {}, once = true) => {
     try {
       const { email, name, profileURL, id, _id } = user;
       const uid = _id || id;
       const data = { $email: email, $name: name, profileURL, _id: uid };
 
-      if (this.trackingId) mixpanel.people.set(data);
+      if (this.trackingId) {
+        if (once) mixpanel.people.set_once(data);
+        else mixpanel.people.set(data);
+      }
     } catch (error) {
       handleError(error);
     }
