@@ -11,7 +11,7 @@
 - [ ] DOT
   - [ ] Chrome extension utils
 - [ ] E Feed
-  - [ ] Tracking lib
+  - [x] Tracking lib
 - [ ] File Ops - util functions
 - [ ] Add JS docs
 - [ ] Generate readme using JS docs

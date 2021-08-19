@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+/**
+ * Custom hook to handle object states
+ * @param {Object} initialState
+ * @returns {[Object, function, function]} -return a stateful value, updater & reset function
+ */
 const useObject = (initialState = {}) => {
   const [object, setObject] = useState(initialState);
 

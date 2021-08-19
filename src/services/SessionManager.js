@@ -40,6 +40,10 @@ class SessionManager {
   hasToken = () => {
     return Boolean(this.getToken());
   };
+
+  get token() {
+    return this.getProperty("token");
+  }
 }
 
 export default SessionManager;
