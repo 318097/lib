@@ -13,6 +13,7 @@ module.exports = () => {
       helpers: "./src/helpers/index.js",
       hooks: "./src/hooks/index.js",
       services: "./src/services/index.js",
+      downloads: "./src/downloads/index.js",
       index: "./src/index.js",
     },
     output: {
