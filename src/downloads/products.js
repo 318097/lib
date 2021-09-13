@@ -2,7 +2,7 @@ import { handleError } from "../helpers/errorHandling";
 
 const getProducts = async () => {
   const DATA_URL =
-    "https://raw.githubusercontent.com/318097/bubblegum/master/server/PRODUCTS.json";
+    "https://raw.githubusercontent.com/318097/bubblegum/master/PRODUCTS.json";
 
   try {
     const res = await fetch(DATA_URL);
