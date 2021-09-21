@@ -1,14 +1,21 @@
-const NodemonPlugin = require("nodemon-webpack-plugin");
 const path = require("path");
 const commonConfig = require("./webpack.common");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   ...commonConfig,
-  entry: "./src/services",
+  entry: "./src/index.js",
   mode: "development",
   output: {
-    path: path.resolve("./dev"),
+    library: "lib",
+    libraryTarget: "umd",
+    path: path.resolve(__dirname, "build"),
+    filename: "script.js",
   },
-
-  plugins: [new NodemonPlugin()],
+  devServer: {
+    static: { directory: path.join(__dirname, "build") },
+    port: 9000,
+    open: true,
+  },
+  plugins: [new HtmlWebpackPlugin({ template: "./public/index.html" })],
 };
