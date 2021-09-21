@@ -10,3 +10,4 @@ export {
   generateRandomNumberInRange,
   calculateTotal,
 } from "./numbers";
+export { convertObjToQueryParams, appendQueryParams } from "./mix";
