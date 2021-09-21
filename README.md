@@ -17,3 +17,5 @@
 - [ ] Generate readme using JS docs
 - [ ] Convert to typescript
 - [ ] Setup dev environment
+  - [x] JS functions
+  - [ ] React
