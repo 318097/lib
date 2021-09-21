@@ -3,10 +3,9 @@ import _ from "lodash";
 const convertObjToQueryParams = (obj = {}) => {
   const result = [];
 
-  _.map(
-    _.filter(obj, (val) => Boolean(val)),
-    (val, key) => result.push(`${key}=${val}`)
-  );
+  _.forEach(obj, (val, key) => {
+    if (val) result.push(`${key}=${val}`);
+  });
 
   return result;
 };
@@ -15,7 +14,9 @@ const appendQueryParams = (url, queryParams) => {
   if (!url) return "";
   if (!queryParams) return url;
 
-  return `${url}${url.contains("?") ? "&" : "?"}${queryParams}`;
+  const parsed =
+    typeof queryParams === "string" ? queryParams : queryParams.join("&");
+  return `${url}${url.includes("?") ? "&" : "?"}${parsed}`;
 };
 
 export { convertObjToQueryParams, appendQueryParams };
