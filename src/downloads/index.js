@@ -1,1 +1,1 @@
-export { default as getProducts } from "./products";
+export { formatPromotionalProducts, getProducts } from "./products";

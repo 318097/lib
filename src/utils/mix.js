@@ -11,12 +11,14 @@ const convertObjToQueryParams = (obj = {}) => {
 };
 
 const appendQueryParams = (url, queryParams) => {
-  if (!url) return "";
+  if (!url) return;
   if (!queryParams) return url;
 
   const parsed =
     typeof queryParams === "string" ? queryParams : queryParams.join("&");
-  return `${url}${url.includes("?") ? "&" : "?"}${parsed}`;
+  const seperator = url.includes("?") ? "&" : "?";
+
+  return `${url}${seperator}${parsed}`;
 };
 
 export { convertObjToQueryParams, appendQueryParams };
