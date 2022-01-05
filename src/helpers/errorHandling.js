@@ -48,7 +48,7 @@ const handleError = (
       else {
         setTimeout(() => {
           localStorage.clear();
-          if (window.location.pathname !== "/login") window.location.reload();
+          // if (window.location.pathname !== "/login") window.location.reload();
         }, 2000);
       }
     }
