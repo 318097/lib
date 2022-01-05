@@ -23,4 +23,13 @@ const formatPromotionalProducts = (products = [], appId) => {
   };
 };
 
-export { formatPromotionalProducts, getProducts };
+const getAndFormatPromotionalProducts = async (appId) => {
+  const products = await getProducts();
+  return formatPromotionalProducts(products, appId);
+};
+
+export {
+  formatPromotionalProducts,
+  getProducts,
+  getAndFormatPromotionalProducts,
+};
