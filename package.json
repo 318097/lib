@@ -13,7 +13,7 @@
     "deploy": "npm run build && npm run publish:npm",
     "lint": "eslint --ext js,jsx src/",
     "fix": "eslint --fix src/",
-    "doc": "jsdoc -c jsdocs.json"
+    "gen": "jsdoc -c jsdocs.json"
   },
   "keywords": [],
   "bit": {
