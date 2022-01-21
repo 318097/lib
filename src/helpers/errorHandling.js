@@ -20,10 +20,11 @@ const ERROR_MAPPING = {
     msg: "Invalid username/password",
   }, // login
   INVALID_EMAIL: { msg: "Invalid email" }, // submitting email from forgot password
-  INVALID_TOKEN: { msg: "Invalid token" },
-  TOKEN_EXPIRED: { msg: "Token expired", forceLogout: true }, // token has been logged out from session
-  INVALID_VERIFICATION_TOKEN: { msg: "Invalid verification token" },
-  NO_TOKEN_FOUND: { msg: "No token found" },
+  INVALID_JWT_TOKEN: { msg: "Invalid token", forceLogout: true }, // Token not correct
+  JWT_TOKEN_EXPIRED: { msg: "Token expired", forceLogout: true }, // token has been logged out from session
+  INVALID_RESET_TOKEN: { msg: "Reset token expired" }, // reset password
+  INVALID_VERIFICATION_TOKEN: { msg: "Invalid verification token" }, // account verification
+  NO_JWT_TOKEN_FOUND: { msg: "No token found" },
   EMAIL_OR_USERNAME_REGISTERED: { msg: "Email/Username already exists." },
 };
 
