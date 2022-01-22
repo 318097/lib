@@ -1,7 +1,7 @@
-const TerserPlugin = require("terser-webpack-plugin");
+// const TerserPlugin = require("terser-webpack-plugin");
 const commonConfig = require("./webpack.common");
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin =
+//   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = () => {
   return {
@@ -25,17 +25,17 @@ module.exports = () => {
       react: "react",
     },
     // plugins: [new BundleAnalyzerPlugin()],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new TerserPlugin({
-          terserOptions: {
-            compress: {
-              pure_funcs: ["console.log"],
-            },
-          },
-        }),
-      ],
-    },
+    // optimization: {
+    //   minimize: true,
+    //   minimizer: [
+    //     new TerserPlugin({
+    //       terserOptions: {
+    //         compress: {
+    //           pure_funcs: ["console.log"],
+    //         },
+    //       },
+    //     }),
+    //   ],
+    // },
   };
 };
