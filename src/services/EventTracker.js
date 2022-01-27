@@ -7,7 +7,7 @@ const getValue = (user, key) => {
 
   if (key === "id") return uid;
   else if (user[key]) return user[key];
-  return console.warn("Key not found in `user` obj");
+  console.warn("Key not found in `user` obj");
 };
 
 class EventTracker {
@@ -30,22 +30,23 @@ class EventTracker {
 
       if (this.events) {
         if (this.events[event]) {
-          const obj = this.events[event] || {};
-          eventName = obj["name"];
-          if (obj["fields"]) {
-            const isValid = obj["fields"].every((field) =>
-              Boolean(params[field])
-            );
+          const eventObj = this.events[event] || {};
+          const { name, fields, default: _defaultEventProps = {} } = eventObj;
+          eventName = name;
+          if (fields) {
+            const isValid = fields.every((field) => Boolean(params[field]));
             if (!isValid)
-              return console.warn(
-                `${obj["fields"].join(", ")} fields are required.`
-              );
+              return console.warn(`${fields.join(", ")} fields are required.`);
           }
         } else return console.warn(`Invalid event: '${event}'`);
       } else eventName = event;
 
       const { defaultProperties = {} } = this.custom || {};
-      const properties = { ...params, ...defaultProperties };
+      const properties = {
+        ..._defaultEventProps,
+        ...params,
+        ...defaultProperties,
+      };
 
       if (this.isDev) console.table({ eventName, ...properties });
 
