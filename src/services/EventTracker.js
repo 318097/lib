@@ -27,12 +27,14 @@ class EventTracker {
   track = (event, params = {}) => {
     try {
       let eventName;
+      let _defaultProps;
 
       if (this.events) {
         if (this.events[event]) {
           const eventObj = this.events[event] || {};
           const { name, fields, defaultProps } = eventObj;
           eventName = name;
+          _defaultProps = defaultProps;
           if (fields) {
             const isValid = fields.every((field) => Boolean(params[field]));
             if (!isValid)
@@ -43,7 +45,7 @@ class EventTracker {
 
       const { defaultProperties = {} } = this.custom || {};
       const properties = {
-        ...(defaultProps || {}),
+        ...(_defaultProps || {}),
         ...params,
         ...defaultProperties,
       };
