@@ -54,6 +54,7 @@ const handleError = (
       }
     }
   } else notify(errorMessage, "error");
+  console.error(error);
 };
 
 export { handleError };
