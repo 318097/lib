@@ -31,7 +31,7 @@ class EventTracker {
       if (this.events) {
         if (this.events[event]) {
           const eventObj = this.events[event] || {};
-          const { name, fields, default: _defaultEventProps = {} } = eventObj;
+          const { name, fields, defaultProps } = eventObj;
           eventName = name;
           if (fields) {
             const isValid = fields.every((field) => Boolean(params[field]));
@@ -43,7 +43,7 @@ class EventTracker {
 
       const { defaultProperties = {} } = this.custom || {};
       const properties = {
-        ..._defaultEventProps,
+        ...(defaultProps || {}),
         ...params,
         ...defaultProperties,
       };
