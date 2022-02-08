@@ -16,11 +16,6 @@
     "gen": "jsdoc -c jsdocs.json"
   },
   "keywords": [],
-  "bit": {
-    "env": {},
-    "componentsDefaultDirectory": "components/{name}",
-    "packageManager": "npm"
-  },
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.8.7",
