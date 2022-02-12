@@ -9,10 +9,13 @@ const DATA_URL =
 const parseProducts = (products) =>
   _.map(products, (product) => {
     const { links } = product;
-    const cta = _.get(links, "landing.url") || _.get(links, "product.url");
+    const ctaUrl = _.get(links, "landing.url") || _.get(links, "product.url");
+    const ctaLabel =
+      _.get(links, "landing.label") || _.get(links, "product.label");
     return {
       ...product,
-      cta,
+      ctaUrl,
+      ctaLabel,
     };
   });
 
@@ -27,24 +30,40 @@ const getProducts = async (url = DATA_URL) => {
   }
 };
 
-const formatPromotionalProducts = (
+const formatProducts = (
   products = [],
-  { appId, trackingInfo } = {}
+  { appId, trackingInfo, visibilityKey = "promotion" } = {}
 ) => {
   if (!appId) return;
+
+  const convertProductsListToArray = (linksObj) =>
+    Object.entries(linksObj)
+      .map(([platform, value]) => ({
+        ...value,
+        label: value.label || _.capitalize(platform),
+        platform,
+      }))
+      .filter(
+        (item) => !!item.url && !["product", "landing"].includes(item.platform)
+      );
+
   const current = _.find(products, { id: appId });
-  const others = _.map(
-    _.filter(
-      products,
-      ({ id, visibility }) => id !== appId && visibility?.promotion
-    ),
-    (product) => {
-      const queryParams = `utm_source=${appId.toLowerCase()}&utm_medium=${
-        trackingInfo?.utm_medium
-      }`;
-      return { ...product, cta: appendQueryParams(product.cta, queryParams) };
-    }
+
+  const filteredList = _.filter(
+    products,
+    ({ id, visibility }) => id !== appId && _.get(visibility, visibilityKey)
   );
+
+  const others = _.map(filteredList, (product) => {
+    const queryParams = `utm_source=${appId.toLowerCase()}&utm_medium=${
+      trackingInfo?.utm_medium
+    }`;
+    return {
+      ...product,
+      ctaUrl: appendQueryParams(product.ctaUrl, queryParams),
+      linkList: convertProductsListToArray(product.links),
+    };
+  });
 
   return {
     current,
@@ -52,13 +71,9 @@ const formatPromotionalProducts = (
   };
 };
 
-const getAndFormatPromotionalProducts = async (appId) => {
+const getAndFormatProducts = async (params) => {
   const products = await getProducts();
-  return formatPromotionalProducts(products, appId);
+  return formatProducts(products, params);
 };
 
-export {
-  formatPromotionalProducts,
-  getProducts,
-  getAndFormatPromotionalProducts,
-};
+export { formatProducts, getProducts, getAndFormatProducts };

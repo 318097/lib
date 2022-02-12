@@ -13,8 +13,4 @@ export {
 } from "./utils";
 export { handleError, getDataFromStorage, setDataInStorage } from "./helpers";
 export { EventTracker, SessionManager } from "./services";
-export {
-  getProducts,
-  formatPromotionalProducts,
-  getAndFormatPromotionalProducts,
-} from "./downloads";
+export { getProducts, formatProducts, getAndFormatProducts } from "./downloads";

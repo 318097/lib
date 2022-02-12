@@ -1,5 +1,1 @@
-export {
-  formatPromotionalProducts,
-  getProducts,
-  getAndFormatPromotionalProducts,
-} from "./products";
+export { formatProducts, getProducts, getAndFormatProducts } from "./products";
