@@ -19,7 +19,7 @@ module.exports = () => {
     output: {
       library: "lib",
       libraryTarget: "umd",
-      globalObject: "this",
+      globalObject: "this", // to make this build work for browser & node env. Fix for next.js integration (window not defined)
       filename: "[name].js",
     },
     externals: {
