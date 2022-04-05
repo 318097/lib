@@ -19,6 +19,7 @@ module.exports = () => {
     output: {
       library: "lib",
       libraryTarget: "umd",
+      globalObject: "this",
       filename: "[name].js",
     },
     externals: {
