@@ -61,14 +61,16 @@ const getServerURL = ({
   returnObject = false,
   port = 7000,
 } = {}) => {
-  const connectToLambda = serverType === "lambda";
-  const LAMBDA_PROD = "https://bubblegum-lambda.netlify.app/.netlify/functions";
-  const HEROKU_PROD = "https://bubblegum-server.herokuapp.com";
+  const PROD_URLS = {
+    lambda: "https://bubblegum-lambda.netlify.app/.netlify/functions",
+    heroku: "https://bubblegum-server.herokuapp.com",
+    render: "https://bubblegum.onrender.com",
+  };
   const LOCAL_SERVER = `http://localhost:${port}`;
 
   let baseURL;
 
-  if (isProd) baseURL = connectToLambda ? LAMBDA_PROD : HEROKU_PROD;
+  if (isProd) baseURL = PROD_URLS[serverType];
   else baseURL = LOCAL_SERVER;
 
   const responseObj = {
