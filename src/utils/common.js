@@ -47,20 +47,19 @@ const checkScrollAtBottom = (node) => {
  * @property {boolean} isProd - connects to prod instance
  * @property {boolean} isStage - connects to stage instance
  * @property {('lambda' | 'render')} serverType - server source
- * @property {boolean} returnObject - returns url object if true. default is false
+ * @property {boolean} shouldReturnUrlObject - returns url object if true. default is false
  * @property {number} port - port for local server. default is 7000
  */
 
 /**
  * Gets the Server URL for Bubblegum server
  * @param {ServerConfiguration} config custom configuration object
- * @returns {string|Object} serverURL or URL object depending on 'returnObject'
+ * @returns {string|Object} serverURL or URL object depending on 'shouldReturnUrlObject'
  */
 const getServerURL = ({
-  isProd = false,
-  isStage = true,
+  env,
   serverType = "lambda",
-  returnObject = false,
+  shouldReturnUrlObject = false,
   port = 7000,
 } = {}) => {
   const PROD_URLS = {
@@ -71,15 +70,20 @@ const getServerURL = ({
   const STAGE_URL = "https://bubblegum-staging.onrender.com";
   const LOCAL_SERVER_URL = `http://localhost:${port}`;
 
-  const baseURL = isProd ? PROD_URLS[serverType] : isStage ? STAGE_URL : LOCAL_SERVER_URL;
+  const baseURL =
+    env === "production"
+      ? PROD_URLS[serverType]
+      : env === "staging"
+      ? STAGE_URL
+      : LOCAL_SERVER_URL;
 
-  const responseObj = {
-    baseURL,
-    serverURL: `${baseURL}/api`,
-    graphqlURL: `${baseURL}/graphql`,
+  const urlObj = {
+    base: baseURL,
+    rest: `${baseURL}/api`,
+    graphql: `${baseURL}/graphql`,
   };
 
-  return returnObject ? responseObj : `${baseURL}/api`;
+  return shouldReturnUrlObject ? urlObj : `${baseURL}/api`;
 };
 
 export { generateSlug, copyToClipboard, checkScrollAtBottom, getServerURL };
