@@ -44,19 +44,21 @@ const checkScrollAtBottom = (node) => {
 
 /**
  * @typedef {Object} ServerConfiguration
- * @property {boolean} isProd - connected to prod or dev
- * @property {('lambda' | 'heroku')} serverType - server source
+ * @property {boolean} isProd - connects to prod instance
+ * @property {boolean} isStage - connects to stage instance
+ * @property {('lambda' | 'render')} serverType - server source
  * @property {boolean} returnObject - returns url object if true. default is false
- * @property {number} port - port for server. default is 7000
+ * @property {number} port - port for local server. default is 7000
  */
 
 /**
  * Gets the Server URL for Bubblegum server
  * @param {ServerConfiguration} config custom configuration object
- * @returns {string|Object} serverURL or URL object based on the input
+ * @returns {string|Object} serverURL or URL object depending on 'returnObject'
  */
 const getServerURL = ({
   isProd = false,
+  isStage = true,
   serverType = "lambda",
   returnObject = false,
   port = 7000,
@@ -66,12 +68,10 @@ const getServerURL = ({
     heroku: "https://bubblegum-server.herokuapp.com",
     render: "https://bubblegum.onrender.com",
   };
-  const LOCAL_SERVER = `http://localhost:${port}`;
+  const STAGE_URL = "https://bubblegum-staging.onrender.com";
+  const LOCAL_SERVER_URL = `http://localhost:${port}`;
 
-  let baseURL;
-
-  if (isProd) baseURL = PROD_URLS[serverType];
-  else baseURL = LOCAL_SERVER;
+  const baseURL = isProd ? PROD_URLS[serverType] : isStage ? STAGE_URL : LOCAL_SERVER_URL;
 
   const responseObj = {
     baseURL,
