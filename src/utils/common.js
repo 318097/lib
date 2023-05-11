@@ -47,21 +47,21 @@ const checkScrollAtBottom = (node) => {
  * @property {boolean} isProd - connects to prod instance
  * @property {boolean} isStage - connects to stage instance
  * @property {('lambda' | 'render')} serverType - server source
- * @property {boolean} shouldReturnUrlObject - returns url object if true. default is false
+ * @property {boolean} shouldReturnUrlObj - returns url object if true. default is false
  * @property {number} port - port for local server. default is 7000
  */
 
 /**
  * Gets the Server URL for Bubblegum server
- * @param {ServerConfiguration} config custom configuration object
- * @returns {string|Object} serverURL or URL object depending on 'shouldReturnUrlObject'
+ * @param {ServerConfiguration} ServerConfiguration custom configuration object
+ * @returns {string|ServerConfiguration} serverURL or URL object depending on 'shouldReturnUrlObj'
  */
 const getServerURL = ({
-  env,
+  env = "development",
   serverType = "lambda",
-  shouldReturnUrlObject = false,
+  shouldReturnUrlObj = false,
   port = 7000,
-} = {}) => {
+}) => {
   const PROD_URLS = {
     lambda: "https://bubblegum-lambda.netlify.app/.netlify/functions",
     heroku: "https://bubblegum-server.herokuapp.com",
@@ -83,7 +83,7 @@ const getServerURL = ({
     graphql: `${baseURL}/graphql`,
   };
 
-  return shouldReturnUrlObject ? urlObj : `${baseURL}/api`;
+  return shouldReturnUrlObj ? urlObj : `${baseURL}/api`;
 };
 
 export { generateSlug, copyToClipboard, checkScrollAtBottom, getServerURL };
